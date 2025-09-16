@@ -4,12 +4,12 @@ import java.util.Date;
 
 abstract  class Operation{
 
-    protected int numeroOperation;
+    protected String numeroOperation;
     protected Date dateOper;
     protected double montant ;
 
 
-    public  Operation(int numeroOperation,Date dateOper, double montant){
+    public  Operation(String numeroOperation,Date dateOper, double montant){
         this.numeroOperation=numeroOperation;
         this.dateOper=dateOper;
         this.montant=montant;
@@ -18,7 +18,7 @@ abstract  class Operation{
 
     //Getters
 
-    public int getNumeroOperation() {
+    public String getNumeroOperation() {
         return numeroOperation;
     }
     public Date getDateOper() {
@@ -30,7 +30,7 @@ abstract  class Operation{
 
     // Setters
 
-    public void setNumeroOperation(int numeroOperation) {
+    public void setNumeroOperation(String numeroOperation) {
         this.numeroOperation = numeroOperation;
     }
 
@@ -43,27 +43,14 @@ abstract  class Operation{
     }
 
 
-
-    // Implementation des methode
-
-    public void retirer(double montant){
-        System.out.print("retirer!");
-
-    };
-    public void verser(double montant){
-        System.out.print("verser!");
-
-    };
-    public void consulterSolde(){
-        System.out.print("consulterSolde!");
-
-    };
-    public double calculerInteret(){
-        return 0;
-    };
-    public void afficherDetails(){
-        System.out.print("afficherDetails!");
-    };
+    @Override
+    public String toString() {
+        return "Operation{" +
+                "numero='" + numeroOperation + '\'' +
+                ", date=" + dateOper +
+                ", montant=" + montant +
+                '}';
+    }
 
 
 
