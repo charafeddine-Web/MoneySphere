@@ -1,17 +1,45 @@
 package model;
+import util.Source;
+
+import java.util.Date;
 
 class Versement extends Operation{
-    private source Source;
+    private Source source;
 
-    public void   Versement(source Source){
-        this.Source=Source;
+    public   Versement(int numeroOperation, Date dateOper, double montant, Source source){
+        super(numeroOperation,dateOper, montant);
+        this.source=source;
     }
 
-    public source getSource() {
-        return Source;
+    //Getters & Setters
+
+    public Source getSource() {
+        return source;
+    }
+    public void setSource(Source source) {
+        source = source;
     }
 
-    public void setSource(source source) {
-        Source = source;
-    }
+
+    //Implementation des methode
+
+    public void retirer(double montant){
+        System.out.print("retirer!");
+
+    };
+    public void verser(double montant){
+        System.out.print("verser!");
+
+    };
+    public void consulterSolde(){
+        System.out.print("consulterSolde!");
+
+    };
+    public double calculerInteret(){
+        return 0;
+    };
+    public void afficherDetails(){
+        System.out.print("afficherDetails!");
+    };
+
 }
