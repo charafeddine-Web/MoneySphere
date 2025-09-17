@@ -20,5 +20,13 @@ class Versement extends Operation{
         source = source;
     }
 
+    @Override
+    public String toString(){
+        return "Operation {"+
+                "numero='" + numeroOperation + '\'' +
+                ", date=" + dateOper +
+                ", montant=" + montant +
+                '}';
 
+    }
 }
