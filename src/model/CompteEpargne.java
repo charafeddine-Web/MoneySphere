@@ -1,6 +1,7 @@
 package model;
 
 import util.Destination;
+import util.Source;
 
 import java.util.Date;
 import java.util.List;
@@ -36,9 +37,16 @@ public class CompteEpargne extends Compte{
         }
     };
     public void verser(double montant){
-        System.out.print("verser!");
-
+        if (montant <= 0) {
+            System.out.println("Le montant doit être positif !");
+            return;
+        }
+        solde +=montant;
+        listeOperations.add(new Versement(UUID.randomUUID(),new Date(),montant, Source.VIREMENTEXTERNE));
+        System.out.println("Versement de " + montant + " DH effectué avec succès !");
+        System.out.println("Solde actuel: " + solde + " DH");
     };
+
     public void consulterSolde(){
         System.out.print("consulterSolde!");
 
