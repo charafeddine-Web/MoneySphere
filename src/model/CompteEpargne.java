@@ -5,15 +5,12 @@ import java.util.List;
 
 class CompteEpargne extends Compte{
 
-
-
     private double tauxInteret;
 
     public CompteEpargne(String numeroCompte, double solde, Date dateCreation, List<Operation> listeOperations,double tauxInteret){
         super( numeroCompte,  solde,  dateCreation,  listeOperations);
         this.tauxInteret=tauxInteret;
     }
-
     // Getters & Setters
 
     public double getTauxInteret() {
