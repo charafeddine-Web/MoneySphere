@@ -1,16 +1,17 @@
 package model;
 
 import java.util.Date;
+import java.util.UUID;
 
-abstract  class Operation{
+public abstract  class Operation{
 
     protected String numeroOperation;
     protected Date dateOper;
     protected double montant ;
 
 
-    public  Operation(String numeroOperation,Date dateOper, double montant){
-        this.numeroOperation=numeroOperation;
+    public  Operation(UUID numeroOperation, Date dateOper, double montant){
+        this.numeroOperation=numeroOperation.toString();
         this.dateOper=dateOper;
         this.montant=montant;
     }

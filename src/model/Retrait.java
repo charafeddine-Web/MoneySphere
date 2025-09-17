@@ -1,13 +1,15 @@
 package model;
 
 import java.util.Date;
+import java.util.UUID;
+
 import util.Destination;
 
 class Retrait extends Operation{
 
     private Destination destination;
 
-    public  Retrait(Destination destination, String numeroOperation, Date dateOper, double montant ) {
+    public  Retrait(Destination destination, UUID numeroOperation, Date dateOper, double montant ) {
         super(numeroOperation, dateOper,  montant);
         this.destination=destination;
     }
@@ -21,5 +23,12 @@ class Retrait extends Operation{
     }
 
 
-
+    @Override
+    public String toString() {
+        return "Operation{" +
+                "numero='" + numeroOperation + '\'' +
+                ", date=" + dateOper +
+                ", montant=" + montant +
+                '}';
+    }
 }
