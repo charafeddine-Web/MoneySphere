@@ -53,13 +53,29 @@ public class CompteCourant extends Compte {
     };
 
     public void consulterSolde(){
-        System.out.print("consulterSolde!");
+        System.out.println("------------------------------------------------");
+        System.out.println("Compte :" + numeroCompte);
+        System.out.println("Votre Solde actuel :" + solde + " DH");
+        System.out.println("------------------------------------------------");
     };
+
     public double calculerInteret(){
         return 0;
     };
+
     public void afficherDetails(){
-        System.out.print("afficherDetails!");
+        System.out.println("------------------------------------------------");
+        System.out.println("Compte :" + numeroCompte);
+        System.out.println("Type :" + getClass().getName());
+        System.out.println("Solde actuel :" + solde + " DH");
+        System.out.println("Date Creation :" + numeroCompte);
+        System.out.println("Liste Operations :" );
+        if(listeOperations != null && !listeOperations.isEmpty()){
+            for (Operation op:listeOperations){
+                System.out.println("  - " + op);
+            }
+        }
+        System.out.println("------------------------------------------------");
     };
 
 }
