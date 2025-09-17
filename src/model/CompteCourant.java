@@ -16,11 +16,9 @@ public class CompteCourant extends Compte {
     }
 
     // Getters & Setters
-
     public void setDecouvert(double decouvert) {
         this.decouvert = decouvert;
     }
-
     public double getDecouvert() {
         return decouvert;
     }
@@ -42,13 +40,13 @@ public class CompteCourant extends Compte {
         }
     };
     public void verser(double montant){
+        if(solde < montant){
 
+        }
         System.out.print("verser!");
-
     };
     public void consulterSolde(){
         System.out.print("consulterSolde!");
-
     };
     public double calculerInteret(){
         return 0;

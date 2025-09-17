@@ -1,7 +1,10 @@
 package model;
 
+import util.Destination;
+
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 public class CompteEpargne extends Compte{
 
@@ -11,8 +14,8 @@ public class CompteEpargne extends Compte{
         super( numeroCompte,  solde,  dateCreation,  listeOperations);
         this.tauxInteret=tauxInteret;
     }
-    // Getters & Setters
 
+    // Getters & Setters
     public double getTauxInteret() {
         return tauxInteret;
     }
@@ -22,10 +25,15 @@ public class CompteEpargne extends Compte{
     }
 
     // Implementation des methode
-
     public void retirer(double montant){
-        System.out.print("retirer!");
-
+        if(solde >= montant){
+            solde -=montant;
+            listeOperations.add(new Retrait(Destination.DISTRIBUTEUR_ATM, UUID.randomUUID(), new Date(), montant));
+            System.out.println("Retrait de " + montant + " DH effectué avec succès ");
+            System.out.println("Solde actuel: " + solde + " DH");
+        }else{
+            System.out.println("Retrait impossible ! montane > votre solde .");
+        }
     };
     public void verser(double montant){
         System.out.print("verser!");

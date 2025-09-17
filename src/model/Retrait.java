@@ -13,15 +13,14 @@ class Retrait extends Operation{
         super(numeroOperation, dateOper,  montant);
         this.destination=destination;
     }
+    //  Getters & Setters
 
     public Destination getDestination() {
         return destination;
     }
-
     public void setDestination(Destination destination) {
         this.destination = destination;
     }
-
 
     @Override
     public String toString() {
