@@ -5,7 +5,7 @@ import java.util.UUID;
 
 import util.Destination;
 
-class Retrait extends Operation{
+public class Retrait extends Operation{
 
     private Destination destination;
 

@@ -4,7 +4,7 @@ import util.Source;
 import java.util.Date;
 import java.util.UUID;
 
-class Versement extends Operation{
+public class Versement extends Operation{
     private Source source;
 
     public Versement(UUID numeroOperation, Date dateOper, double montant, Source source){
