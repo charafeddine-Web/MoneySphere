@@ -3,7 +3,7 @@ package model;
 import java.util.Date;
 import java.util.List;
 
-class CompteEpargne extends Compte{
+public class CompteEpargne extends Compte{
 
     private double tauxInteret;
 

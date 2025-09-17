@@ -3,7 +3,7 @@ package model;
 import java.util.Date;
 import java.util.List;
 
-class CompteCourant extends Compte {
+public class CompteCourant extends Compte {
 
     public double decouvert;
 
