@@ -41,6 +41,7 @@ public class CompteCourant extends Compte {
             System.out.println("Retrait impossible ! Dépassement du découvert autorisé.");
         }
     };
+
     public void verser(double montant){
         if (montant <= 0) {
             System.out.println("Le montant doit être positif !");
@@ -52,28 +53,29 @@ public class CompteCourant extends Compte {
         System.out.println("Solde actuel: " + solde + " DH");
     };
 
-    public void consulterSolde(){
-        System.out.println("------------------------------------------------");
-        System.out.println("Compte :" + numeroCompte);
-        System.out.println("Votre Solde actuel :" + solde + " DH");
-        System.out.println("------------------------------------------------");
-    };
+//    public void consulterSolde(){
+//        System.out.println("------------------------------------------------");
+//        System.out.println("Compte :" + numeroCompte);
+//        System.out.println("Votre Solde actuel :" + solde + " DH");
+//        System.out.println("------------------------------------------------");
+//    };
 
     public double calculerInteret(){
         return 0;
     };
 
+    @Override
     public void afficherDetails(){
         System.out.println("------------------------------------------------");
         System.out.println("Compte :" + numeroCompte);
         System.out.println("Type :" + getClass().getName());
         System.out.println("Solde actuel :" + solde + " DH");
         System.out.println("Date Creation :" + numeroCompte);
-        System.out.println("Liste Operations :" );
-        if(listeOperations != null && !listeOperations.isEmpty()){
-            for (Operation op:listeOperations){
-                System.out.println("  - " + op);
-            }
+        System.out.println("Historique des opérations :");
+        if (listeOperations.isEmpty()) {
+            System.out.println("Aucune opération effectuée.");
+        } else {
+            listeOperations.forEach(System.out::println);
         }
         System.out.println("------------------------------------------------");
     };

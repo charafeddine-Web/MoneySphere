@@ -9,12 +9,18 @@ public class CompteController {
     private final HashMap<String, Compte> comptes=new HashMap<>();
 
     public void creerCompteCourant(String numeroCompte,double solde,double decouvert){
+        if (!numeroCompte.startsWith("CPT-")) {
+            numeroCompte = "CPT-" + numeroCompte;
+        }
         CompteCourant cc = new CompteCourant(numeroCompte,solde,new Date(),new ArrayList<>(),decouvert);
         comptes.put(cc.getNumeroCompte(),cc);
         System.out.println(" Compte courant créé avec succès !");
     }
 
     public void creerCompteEpargne(String numeroCompte,double solde , double tauxInteret){
+        if (!numeroCompte.startsWith("CPT-")) {
+            numeroCompte = "CPT-" + numeroCompte;
+        }
         CompteEpargne ce=new CompteEpargne(numeroCompte,solde,new Date(),new ArrayList<>(), tauxInteret);
         comptes.put(ce.getNumeroCompte(),ce);
         System.out.println(" Compte Epargne créé avec succès !");
@@ -37,7 +43,7 @@ public class CompteController {
 
     }
 
-    public void retriet(String numeroCompte,double montant){
+    public void retirer(String numeroCompte,double montant){
         Compte compte=comptes.get(numeroCompte);
         if (numeroCompte == null){
             System.out.println("Compte introuvable : " + numeroCompte);
@@ -49,6 +55,8 @@ public class CompteController {
         }
         compte.retirer(montant);
     }
+
+
 
     public void virement(String numeroSource, String numeroDestination, double montant){
         Compte source=comptes.get(numeroSource);
@@ -107,18 +115,8 @@ public class CompteController {
             System.out.println("Compte source introuvable : " + numeroCompte);
             return;
         }
-        System.out.println("------------------------------------------------");
-        System.out.println("Compte : " + compte.getNumeroCompte());
-        System.out.println("Type : " + compte.getClass().getSimpleName());
-        System.out.println("Date Creation : " + compte.getDateCreation() );
-        System.out.println("Solde actuel : " + compte.getSolde() + " DH");
-        System.out.println("Historique des opérations :");
-        if (compte.getListeOperations().isEmpty()) {
-            System.out.println("Aucune opération effectuée.");
-        } else {
-            compte.getListeOperations().forEach(System.out::println);
-        }
     };
+
     public void afficherOperations(String numeroCompte){
         Compte compte=comptes.get(numeroCompte);
         if (compte== null){
@@ -134,5 +132,9 @@ public class CompteController {
         }
         System.out.println("------------------------------------------------");
     };
+
+    public boolean existeCompte(String numeroCompte) {
+        return comptes.containsKey(numeroCompte);
+    }
 
 }

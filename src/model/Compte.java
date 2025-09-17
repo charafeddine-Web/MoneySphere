@@ -55,7 +55,7 @@ public abstract class Compte {
     // Méthodes abstraites
     public abstract void retirer(double montant);
     public abstract void verser(double montant);
-    public abstract void consulterSolde();
+//    public abstract void consulterSolde();
     public abstract double calculerInteret();
     public abstract void afficherDetails();
 }

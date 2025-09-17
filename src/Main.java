@@ -26,7 +26,7 @@ public class Main {
                     int typeCompte= scnr.nextInt();
                     scnr.nextLine();
 
-                    System.out.print("Numéro de compte : ");
+                    System.out.print("Numéro de compte (XXXXX) : ");
                     String numero = scnr.nextLine();
                     System.out.print("Solde initial : ");
                     double solde = scnr.nextDouble();
@@ -44,25 +44,51 @@ public class Main {
                     }
                     break;
                 case 2:
-                    System.out.print("Numéro du compte : ");
+                    System.out.print("Numéro du compte (CPT-XXXXX): ");
                     String numCompte = scnr.nextLine();
 
+                    if (!compteController.existeCompte(numCompte)) {
+                        System.out.println("Ce compte n'existe pas. Veuillez créer un compte d'abord !");
+                        break;
+                    }
                     System.out.println("1 - Verser");
                     System.out.println("2 - Retirer");
-                    System.out.println("3 - Consulter solde");
-                    System.out.println("4 - Virement");
+                    System.out.println("3 - Virement");
+                    System.out.println("4 - Consulter solde");
+                    System.out.println("5 - Afficher Operations");
+                    System.out.println("6 - Afficher détails du compte");
+
+
                     System.out.print("Votre choix : ");
 
                     int  TypeOperation = scnr.nextInt();
                     scnr.nextLine();
                     switch (TypeOperation){
                         case 1:
+                            System.out.print("montant : ");
+                            double montantVerse = scnr.nextDouble();
+                            compteController.verse(numCompte,montantVerse);
                             break;
                         case 2:
+                            System.out.print("Montant a retirer : ");
+                            double montantRetriet = scnr.nextDouble();
+                            compteController.retirer(numCompte,montantRetriet);
                             break;
                         case 3:
+                            System.out.print("Numero Compte Destinataire :");
+                            String  numCompteDes=scnr.nextLine();
+                            System.out.print("montant : ");
+                            double montantVerseOuDes = scnr.nextDouble();
+                            compteController.virement(numCompte,numCompteDes,montantVerseOuDes);
                             break;
                         case 4:
+                            compteController.consulterSolde(numCompte);
+                            break;
+                        case 5:
+                            compteController.afficherOperations(numCompte);
+                            break;
+                        case 6:
+                            compteController.afficherDetails(numCompte);
                             break;
                         default:
                             System.out.println("Option invalide !");
