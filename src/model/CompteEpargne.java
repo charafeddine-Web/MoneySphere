@@ -55,7 +55,7 @@ public class CompteEpargne extends Compte{
     };
 
     public double calculerInteret(){
-        return 0;
+        return solde * tauxInteret;
     };
     public void afficherDetails(){
         System.out.println("------------------------------------------------");
