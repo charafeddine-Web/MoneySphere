@@ -2,6 +2,7 @@ package model;
 
 import java.util.Date;
 import java.util.List;
+import util.*;
 
 public abstract class Compte {
 
@@ -53,8 +54,8 @@ public abstract class Compte {
     }
 
     // Méthodes abstraites
-    public abstract void retirer(double montant);
-    public abstract void verser(double montant);
+    public abstract void retirer(double montant,Destination destination);
+    public abstract void verser(double montant, Source source);
 //    public abstract void consulterSolde();
     public abstract double calculerInteret();
     public abstract void afficherDetails();

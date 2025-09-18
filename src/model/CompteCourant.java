@@ -27,43 +27,35 @@ public class CompteCourant extends Compte {
 
     // Implementation des methode
 
-    public void retirer(double montant){
+    public void retirer(double montant,Destination destination){
         if(montant <= 0 ){
             System.out.println(" Le montant doit être positif !");
             return;
         }
         if (solde - montant >= -decouvert){
             solde -= montant;
-            listeOperations .add(new Retrait( Destination.DISTRIBUTEUR_ATM, UUID.randomUUID(), new Date(), montant));
+            listeOperations .add(new Retrait( destination, UUID.randomUUID(), new Date(), montant));
             System.out.println("Retrait de " + montant + " DH effectué avec succès ");
             System.out.println("Solde actuel: " + solde + " DH");
         } else {
             System.out.println("Retrait impossible ! Dépassement du découvert autorisé.");
         }
     };
-
-    public void verser(double montant){
+    @Override
+    public void verser(double montant, Source source){
         if (montant <= 0) {
             System.out.println("Le montant doit être positif !");
             return;
         }
         solde +=montant;
-        listeOperations.add(new Versement(UUID.randomUUID(),new Date(),montant,Source.VIREMENTEXTERNE));
+        listeOperations.add(new Versement(UUID.randomUUID(),new Date(),montant,source));
         System.out.println("Versement de " + montant + " DH effectué avec succès !");
         System.out.println("Solde actuel: " + solde + " DH");
     };
-
-//    public void consulterSolde(){
-//        System.out.println("------------------------------------------------");
-//        System.out.println("Compte :" + numeroCompte);
-//        System.out.println("Votre Solde actuel :" + solde + " DH");
-//        System.out.println("------------------------------------------------");
-//    };
-
+    @Override
     public double calculerInteret(){
         return 0;
     };
-
     @Override
     public void afficherDetails(){
         System.out.println("------------------------------------------------");
@@ -79,5 +71,14 @@ public class CompteCourant extends Compte {
         }
         System.out.println("------------------------------------------------");
     };
+
+
+
+    //    public void consulterSolde(){
+//        System.out.println("------------------------------------------------");
+//        System.out.println("Compte :" + numeroCompte);
+//        System.out.println("Votre Solde actuel :" + solde + " DH");
+//        System.out.println("------------------------------------------------");
+//    };
 
 }

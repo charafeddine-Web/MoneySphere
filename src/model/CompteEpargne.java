@@ -20,44 +20,37 @@ public class CompteEpargne extends Compte{
     public double getTauxInteret() {
         return tauxInteret;
     }
-
     public void setTauxInteret(double tauxInteret) {
         this.tauxInteret = tauxInteret;
     }
 
     // Implementation des methode
-    public void retirer(double montant){
+    @Override
+    public void retirer(double montant,Destination destination){
         if(solde >= montant){
             solde -=montant;
-            listeOperations.add(new Retrait(Destination.DISTRIBUTEUR_ATM, UUID.randomUUID(), new Date(), montant));
+            listeOperations.add(new Retrait(destination, UUID.randomUUID(), new Date(), montant));
             System.out.println("Retrait de " + montant + " DH effectué avec succès ");
             System.out.println("Solde actuel: " + solde + " DH");
         }else{
             System.out.println("Retrait impossible ! montane > votre solde .");
         }
     };
-    public void verser(double montant){
+    @Override
+    public void verser(double montant ,Source source){
         if (montant <= 0) {
             System.out.println("Le montant doit être positif !");
             return;
         }
         solde +=montant;
-        listeOperations.add(new Versement(UUID.randomUUID(),new Date(),montant, Source.VIREMENTEXTERNE));
+        listeOperations.add(new Versement(UUID.randomUUID(),new Date(),montant, source));
         System.out.println("Versement de " + montant + " DH effectué avec succès !");
         System.out.println("Solde actuel: " + solde + " DH");
     };
-
-//    public void consulterSolde(){
-//        System.out.println("------------------------------------------------");
-//        System.out.println("Compte :" + numeroCompte);
-//        System.out.println("Votre Solde actuel :" + solde + " DH");
-//        System.out.println("------------------------------------------------");
-//    };
-
+    @Override
     public double calculerInteret(){
         return solde * tauxInteret;
     };
-
     @Override
     public void afficherDetails(){
         System.out.println("------------------------------------------------");
@@ -75,5 +68,12 @@ public class CompteEpargne extends Compte{
 
 
     };
+
+    //    public void consulterSolde(){
+//        System.out.println("------------------------------------------------");
+//        System.out.println("Compte :" + numeroCompte);
+//        System.out.println("Votre Solde actuel :" + solde + " DH");
+//        System.out.println("------------------------------------------------");
+//    };
 
 }

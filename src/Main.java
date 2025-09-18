@@ -1,5 +1,7 @@
 import java.util.*;
 import controller.*;
+import model.*;
+import util.*;
 
 public class Main {
     public static void main(String[] args) {
@@ -60,19 +62,40 @@ public class Main {
 
 
                     System.out.print("Votre choix : ");
-
                     int  TypeOperation = scnr.nextInt();
                     scnr.nextLine();
                     switch (TypeOperation){
                         case 1:
-                            System.out.print("montant : ");
+                            System.out.print("Montant à verser : ");
                             double montantVerse = scnr.nextDouble();
-                            compteController.verse(numCompte,montantVerse);
+                            scnr.nextLine();
+                            for (Source s: Source.values()){
+                                System.out.println("- "+s);
+                            }
+                            System.out.print("Votre choix : ");
+                            String choixSource=scnr.nextLine().toUpperCase();
+                            try {
+                                Source source = Source.valueOf(choixSource);
+                                compteController.verse(numCompte, montantVerse,source);
+                            } catch (IllegalArgumentException e) {
+                                System.out.println("Type de versement invalide !");
+                            }
                             break;
                         case 2:
                             System.out.print("Montant a retirer : ");
                             double montantRetriet = scnr.nextDouble();
-                            compteController.retirer(numCompte,montantRetriet);
+                            scnr.nextLine();
+                            for (Destination ds: Destination.values()){
+                                System.out.println("- "+ds);
+                            }
+                            System.out.print("Votre choix : ");
+                            String choixDes=scnr.nextLine().toUpperCase();
+                            try{
+                                Destination destination=Destination.valueOf(choixDes);
+                                compteController.retirer(numCompte,montantRetriet,destination);
+                            }catch (IllegalArgumentException e){
+                                System.out.println("Type de Retirer invalide !");
+                            }
                             break;
                         case 3:
                             System.out.print("Numero Compte Destinataire :");
