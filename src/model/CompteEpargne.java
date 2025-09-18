@@ -1,5 +1,5 @@
 package model;
-
+import java.util.*;
 import util.Destination;
 import util.Source;
 
@@ -9,13 +9,12 @@ import java.util.UUID;
 
 public class CompteEpargne extends Compte{
 
-    private double tauxInteret;
+    private double tauxInteret=0.08;
 
-    public CompteEpargne(String numeroCompte, double solde, Date dateCreation, List<Operation> listeOperations,double tauxInteret){
+    public CompteEpargne(String numeroCompte, double solde, Date dateCreation, List<Operation> listeOperations){
         super( numeroCompte,  solde,  dateCreation,  listeOperations);
-        this.tauxInteret=tauxInteret;
+        demarrerCalculInterets();
     }
-
     // Getters & Setters
     public double getTauxInteret() {
         return tauxInteret;
@@ -48,10 +47,6 @@ public class CompteEpargne extends Compte{
         System.out.println("Solde actuel: " + solde + " DH");
     };
     @Override
-    public double calculerInteret(){
-        return solde * tauxInteret;
-    };
-    @Override
     public void afficherDetails(){
         System.out.println("------------------------------------------------");
         System.out.println("Compte :" + numeroCompte);
@@ -68,6 +63,25 @@ public class CompteEpargne extends Compte{
 
 
     };
+    @Override
+    public double calculerInteret(){
+        return solde * tauxInteret;
+    };
+    private void demarrerCalculInterets() {
+        Timer timer = new Timer(true);
+        timer.scheduleAtFixedRate(new TimerTask() {
+            @Override
+            public void run() {
+                appliquerInteret();
+            }
+        }, 5000, 5000);
+    }
+    public void appliquerInteret() {
+        double interet = calculerInteret();
+        solde += interet;
+        System.out.println("Intérêts ajoutés: " + interet + " DH");
+        System.out.println("Nouveau solde: " + solde + " DH");
+    }
 
     //    public void consulterSolde(){
 //        System.out.println("------------------------------------------------");

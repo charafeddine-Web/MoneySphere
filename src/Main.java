@@ -38,9 +38,9 @@ public class Main {
                         double decouvert = scnr.nextDouble();
                         compteController.creerCompteCourant(numero, solde, decouvert);
                     }else if (typeCompte == 2) {
-                        System.out.print("Taux d'intérêt : ");
-                        double taux = scnr.nextDouble();
-                        compteController.creerCompteEpargne(numero, solde, taux);
+//                        System.out.print("Taux d'intérêt : ");
+//                        double taux = scnr.nextDouble();
+                        compteController.creerCompteEpargne(numero, solde);
                     } else {
                         System.out.println("Option invalide !");
                     }

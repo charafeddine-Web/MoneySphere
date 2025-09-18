@@ -16,7 +16,6 @@ public class CompteCourant extends Compte {
         super( numeroCompte,  solde,  dateCreation, listeOperations);
         this.decouvert=decouvert;
     }
-
     // Getters & Setters
     public void setDecouvert(double decouvert) {
         this.decouvert = decouvert;
@@ -26,7 +25,6 @@ public class CompteCourant extends Compte {
     }
 
     // Implementation des methode
-
     public void retirer(double montant,Destination destination){
         if(montant <= 0 ){
             System.out.println(" Le montant doit être positif !");
