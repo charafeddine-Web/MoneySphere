@@ -12,22 +12,26 @@ public class CompteController {
 
     private final HashMap<String, Compte> comptes=new HashMap<>();
 
-    public void creerCompteCourant(String numeroCompte,double solde,double decouvert){
-        if (!numeroCompte.startsWith("CPT-")) {
-            numeroCompte = "CPT-" + numeroCompte;
-        }
+    public static int compteur=1;
+
+    public String genereteCompteur(){
+        return String.format("CPT-%05d",compteur++);
+    }
+
+    public void creerCompteCourant(double solde,double decouvert){
+        String numeroCompte = genereteCompteur();
         CompteCourant cc = new CompteCourant(numeroCompte,solde,new Date(),new ArrayList<>(),decouvert);
         comptes.put(cc.getNumeroCompte(),cc);
         System.out.println(" Compte courant créé avec succès !");
     }
-    public void creerCompteEpargne(String numeroCompte,double solde ){
-        if (!numeroCompte.startsWith("CPT-")) {
-            numeroCompte = "CPT-" + numeroCompte;
-        }
+    public void creerCompteEpargne(double solde ){
+        String numeroCompte = genereteCompteur();
         CompteEpargne ce=new CompteEpargne(numeroCompte,solde,new Date(),new ArrayList<>());
         comptes.put(ce.getNumeroCompte(),ce);
         System.out.println(" Compte Epargne créé avec succès !");
     }
+
+
     public  void verse(String numeroCompte,double montant,Source source){
         Compte compte=comptes.get(numeroCompte);
         if (compte == null){

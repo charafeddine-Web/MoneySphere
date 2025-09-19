@@ -28,21 +28,26 @@ public class Main {
                     int typeCompte= scnr.nextInt();
                     scnr.nextLine();
 
-                    System.out.print("Numéro de compte (XXXXX) : ");
-                    String numero = scnr.nextLine();
+                    if (typeCompte != 1 && typeCompte!=2){
+                        System.out.println("Option invalide !");
+                        break;
+                    }
+//                    System.out.print("Numéro de compte (XXXXX) : ");
+//                    String numero = scnr.nextLine();
                     System.out.print("Solde initial : ");
                     double solde = scnr.nextDouble();
 
                     if(typeCompte==1){
                         System.out.print("Découvert autorisé : ");
                         double decouvert = scnr.nextDouble();
-                        compteController.creerCompteCourant(numero, solde, decouvert);
+                        compteController.creerCompteCourant(solde, decouvert);
                     }else if (typeCompte == 2) {
 //                        System.out.print("Taux d'intérêt : ");
 //                        double taux = scnr.nextDouble();
-                        compteController.creerCompteEpargne(numero, solde);
+                        compteController.creerCompteEpargne( solde);
                     } else {
                         System.out.println("Option invalide !");
+                        return;
                     }
                     break;
                 case 2:
