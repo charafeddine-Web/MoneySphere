@@ -27,6 +27,7 @@ public class Retrait extends Operation{
         return "Operation{" +
                 "numero='" + numeroOperation + '\'' +
                 ", date=" + dateOper +
+                ", Retrait="+ getDestination()+
                 ", montant=" + montant +
                 '}';
     }
