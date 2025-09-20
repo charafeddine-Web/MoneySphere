@@ -72,11 +72,6 @@ public class CompteCourant extends Compte {
 
 
 
-    //    public void consulterSolde(){
-//        System.out.println("------------------------------------------------");
-//        System.out.println("Compte :" + numeroCompte);
-//        System.out.println("Votre Solde actuel :" + solde + " DH");
-//        System.out.println("------------------------------------------------");
-//    };
+
 
 }
