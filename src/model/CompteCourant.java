@@ -2,11 +2,9 @@ package model;
 
 import util.Destination;
 import util.Source;
-import util.Source;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
-import model.Versement;
 
 public class CompteCourant extends Compte {
 

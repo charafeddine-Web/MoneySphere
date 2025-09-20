@@ -1,9 +1,7 @@
 package controller;
 import model.*;
 import util.*;
-
 import java.util.*;
-
 import static util.Destination.VIREMENTSORTANT;
 import static util.Source.VIREMENTEXTERNE;
 
@@ -11,7 +9,6 @@ import static util.Source.VIREMENTEXTERNE;
 public class CompteController {
 
     private final HashMap<String, Compte> comptes=new HashMap<>();
-
     public static int compteur=1;
 
     public String genereteCompteur(){

@@ -1,8 +1,6 @@
 package model;
-
 import java.util.Date;
 import java.util.UUID;
-
 import util.Destination;
 
 public class Retrait extends Operation{
@@ -13,8 +11,8 @@ public class Retrait extends Operation{
         super(numeroOperation, dateOper,  montant);
         this.destination=destination;
     }
-    //  Getters & Setters
 
+    //  Getters & Setters
     public Destination getDestination() {
         return destination;
     }
