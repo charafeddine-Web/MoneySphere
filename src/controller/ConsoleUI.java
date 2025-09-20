@@ -83,83 +83,93 @@ public class ConsoleUI {
             System.out.print("Numéro du compte (CPT-XXXXX): ");
             String numCompte = scnr.nextLine();
 
+//            if (!compteController.existeCompte(numCompte)) {
+//                throw new IllegalArgumentException("Ce compte n'existe pas. Veuillez créer un compte d'abord !");
+//            }
+
             if (!compteController.existeCompte(numCompte)) {
-                throw new IllegalArgumentException("Ce compte n'existe pas. Veuillez créer un compte d'abord !");
+                System.out.println("Ce compte n'existe pas. Veuillez créer un compte d'abord !");
+                return;
             }
+            boolean continuer = true;
+            while (continuer) {
+                System.out.println("1 - Verser");
+                System.out.println("2 - Retirer");
+                System.out.println("3 - Virement");
+                System.out.println("4 - Consulter solde");
+                System.out.println("5 - Afficher Operations");
+                System.out.println("6 - Afficher détails du compte");
+                System.out.println("0 - Retour au menu principal");
+                System.out.print("Votre choix : ");
 
-            System.out.println("1 - Verser");
-            System.out.println("2 - Retirer");
-            System.out.println("3 - Virement");
-            System.out.println("4 - Consulter solde");
-            System.out.println("5 - Afficher Operations");
-            System.out.println("6 - Afficher détails du compte");
-            System.out.print("Votre choix : ");
+                int typeOperation = scnr.nextInt();
+                scnr.nextLine();
 
-            int typeOperation = scnr.nextInt();
-            scnr.nextLine();
+                switch (typeOperation) {
+                    case 1:
+                        try {
+                            System.out.print("Montant à verser : ");
+                            double montantVerse = scnr.nextDouble();
+                            scnr.nextLine();
 
-            switch (typeOperation) {
-                case 1:
-                    try {
-                        System.out.print("Montant à verser : ");
-                        double montantVerse = scnr.nextDouble();
-                        scnr.nextLine();
+                            for (Source s : Source.values()) {
+                                System.out.println("- " + s);
+                            }
+                            System.out.print("Votre choix : ");
+                            String choixSource = scnr.nextLine().toUpperCase();
+                            Source source = Source.valueOf(choixSource);
 
-                        for (Source s : Source.values()) {
-                            System.out.println("- " + s);
+                            compteController.verse(numCompte, montantVerse, source);
+                        } catch (IllegalArgumentException e) {
+                            System.out.println("Type de versement invalide !");
                         }
-                        System.out.print("Votre choix : ");
-                        String choixSource = scnr.nextLine().toUpperCase();
-                        Source source = Source.valueOf(choixSource);
+                        break;
 
-                        compteController.verse(numCompte, montantVerse, source);
-                    } catch (IllegalArgumentException e) {
-                        System.out.println("Type de versement invalide !");
-                    }
-                    break;
+                    case 2:
+                        try {
+                            System.out.print("Montant a retirer : ");
+                            double montantRetrait = scnr.nextDouble();
+                            scnr.nextLine();
 
-                case 2:
-                    try {
-                        System.out.print("Montant a retirer : ");
-                        double montantRetrait = scnr.nextDouble();
-                        scnr.nextLine();
+                            for (Destination ds : Destination.values()) {
+                                System.out.println("- " + ds);
+                            }
+                            System.out.print("Votre choix : ");
+                            String choixDes = scnr.nextLine().toUpperCase();
+                            Destination destination = Destination.valueOf(choixDes);
 
-                        for (Destination ds : Destination.values()) {
-                            System.out.println("- " + ds);
+                            compteController.retirer(numCompte, montantRetrait, destination);
+                        } catch (IllegalArgumentException e) {
+                            System.out.println("Type de retrait invalide !");
                         }
-                        System.out.print("Votre choix : ");
-                        String choixDes = scnr.nextLine().toUpperCase();
-                        Destination destination = Destination.valueOf(choixDes);
+                        break;
 
-                        compteController.retirer(numCompte, montantRetrait, destination);
-                    } catch (IllegalArgumentException e) {
-                        System.out.println("Type de retrait invalide !");
-                    }
-                    break;
+                    case 3:
+                        System.out.print("Numero Compte Destinataire : ");
+                        String numCompteDes = scnr.nextLine();
+                        System.out.print("Montant : ");
+                        double montantVirement = scnr.nextDouble();
+                        compteController.virement(numCompte, numCompteDes, montantVirement);
+                        break;
 
-                case 3:
-                    System.out.print("Numero Compte Destinataire : ");
-                    String numCompteDes = scnr.nextLine();
-                    System.out.print("Montant : ");
-                    double montantVirement = scnr.nextDouble();
-                    compteController.virement(numCompte, numCompteDes, montantVirement);
-                    break;
+                    case 4:
+                        compteController.consulterSolde(numCompte);
+                        break;
 
-                case 4:
-                    compteController.consulterSolde(numCompte);
-                    break;
+                    case 5:
+                        compteController.afficherOperations(numCompte);
+                        break;
 
-                case 5:
-                    compteController.afficherOperations(numCompte);
-                    break;
-
-                case 6:
-                    compteController.afficherDetails(numCompte);
-                    break;
-
-                default:
-                    System.out.println("Option invalide !");
-                    break;
+                    case 6:
+                        compteController.afficherDetails(numCompte);
+                        break;
+                    case 0 :
+                        continuer = false;
+                        break;
+                    default:
+                        System.out.println("Option invalide !");
+                        break;
+                }
             }
         } catch (InputMismatchException e) {
             System.out.println("Vous devez entrer un nombre !");

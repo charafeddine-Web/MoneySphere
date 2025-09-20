@@ -63,6 +63,7 @@ public class CompteEpargne extends Compte{
 
 
     };
+
     @Override
     public double calculerInteret(){
         return solde * tauxInteret;
@@ -79,8 +80,8 @@ public class CompteEpargne extends Compte{
     public void appliquerInteret() {
         double interet = calculerInteret();
         solde += interet;
-        System.out.println("Intérêts ajoutés: " + interet + " DH");
-        System.out.println("Nouveau solde: " + solde + " DH");
+//        System.out.println("Intérêts ajoutés: " + interet + " DH");
+//        System.out.println("Nouveau solde: " + solde + " DH");
     }
 
     //    public void consulterSolde(){
