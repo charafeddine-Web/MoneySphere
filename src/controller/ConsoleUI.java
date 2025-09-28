@@ -83,14 +83,15 @@ public class ConsoleUI {
             System.out.print("Numéro du compte (CPT-XXXXX): ");
             String numCompte = scnr.nextLine();
 
+            if (!compteController.existeCompte(numCompte)) {
+                throw new IllegalArgumentException("Ce compte n'existe pas. Veuillez créer un compte d'abord !");
+            }
+
 //            if (!compteController.existeCompte(numCompte)) {
-//                throw new IllegalArgumentException("Ce compte n'existe pas. Veuillez créer un compte d'abord !");
+//                System.out.println("Ce compte n'existe pas. Veuillez créer un compte d'abord !");
+//                return;
 //            }
 
-            if (!compteController.existeCompte(numCompte)) {
-                System.out.println("Ce compte n'existe pas. Veuillez créer un compte d'abord !");
-                return;
-            }
             boolean continuer = true;
             while (continuer) {
                 System.out.println("1 - Verser");

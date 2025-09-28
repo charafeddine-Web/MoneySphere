@@ -8,6 +8,10 @@ import java.util.UUID;
 
 public class CompteEpargne extends Compte{
 
+
+    List<String> Coumptes= new ArrayList<>();
+
+
     private double tauxInteret=0.08;
 
     public CompteEpargne(String numeroCompte, double solde, Date dateCreation, List<Operation> listeOperations){
@@ -90,5 +94,11 @@ public class CompteEpargne extends Compte{
 //        System.out.println("Votre Solde actuel :" + solde + " DH");
 //        System.out.println("------------------------------------------------");
 //    };
+
+
+    @Override
+    public String toString() {
+        return "CompteCourant {" + "num=" + numeroCompte + ", solde=" + solde + "}";
+    }
 
 }

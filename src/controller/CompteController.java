@@ -67,6 +67,7 @@ public class CompteController {
         try {
             Compte source = comptes.get(numeroSource);
             Compte destination = comptes.get(numeroDestination);
+
             if (source == null) throw new IllegalArgumentException("Compte source introuvable : " + numeroSource);
             if (destination == null) throw new IllegalArgumentException("Compte destination introuvable : " + numeroDestination);
             if (montant <= 0) throw new IllegalArgumentException("Le montant doit être positif.");

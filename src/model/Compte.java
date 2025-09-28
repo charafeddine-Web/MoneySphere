@@ -59,4 +59,5 @@ public abstract class Compte {
 //    public abstract void consulterSolde();
     public abstract double calculerInteret();
     public abstract void afficherDetails();
+
 }

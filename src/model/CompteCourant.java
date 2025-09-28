@@ -70,6 +70,9 @@ public class CompteCourant extends Compte {
 
 
 
-
+    @Override
+    public String toString() {
+        return "CompteCourant {" + "num=" + numeroCompte + ", solde=" + solde + "}";
+    }
 
 }
