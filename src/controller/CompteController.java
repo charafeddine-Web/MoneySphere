@@ -128,7 +128,6 @@ public class CompteController {
             System.out.println("Une erreur inattendue est survenue lors de l'affichage des opérations.");
         }
     }
-
     public boolean existeCompte(String numeroCompte) {
         return comptes.containsKey(numeroCompte);
     }

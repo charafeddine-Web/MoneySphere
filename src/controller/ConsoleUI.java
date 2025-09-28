@@ -43,7 +43,6 @@ public class ConsoleUI {
         System.out.println("------------------------------------------------");
         System.out.print("Choisissez une option : ");
     }
-
     private void creerCompte() {
         try {
             System.out.println("1 - Compte Courant");
@@ -76,8 +75,6 @@ public class ConsoleUI {
             System.out.println(e.getMessage());
         }
     }
-
-
     private void managerCompte() {
         try {
             System.out.print("Numéro du compte (CPT-XXXXX): ");
